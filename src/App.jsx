@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import {Button , InputGroup} from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
-
 import './App.css'
 
 function App() {
@@ -18,23 +17,30 @@ function App() {
 },[])
 
   function addUser(){
+    const Name = newName.trim();
+    const Email = newEmail.trim();
+    const Phone = newPhone.trim();
+    const Webpage = newWebsite.trim();
+  
     
+    console.log(Name, Phone, Webpage, Email);
 
-    fetch("https://jsonplaceholder.typicode.com/users"),
+    fetch("https://jsonplaceholder.typicode.com/users",
     {
       method: 'POST',
       body: JSON.stringify({
-        name,
+        Name,
         Email,
         Phone,
-        Website
+        Webpage,
+        
     }),
       headers:{
-        'content-type' : 'Application/json'
+        'content-type' : 'Application/json; charset=utf-8',
       } 
     }
-    .then((response)=> response.json())
-    .then((data)=> setUsers([...user, data]))
+    ).then((response)=> response.json())
+    .then((addUser)=> setUsers([...user, addUser]))
   }
    
   return(
@@ -69,10 +75,10 @@ function App() {
       <tfoot>
         <tr>
           <td></td>
-         <td><input type="text" placeholder='Enter name..'id= 'addName'></input></td>
-         <td><input type="email" placeholder='Enter Email..' id= 'addEmail' ></input></td>
-         <td><input type="number" placeholder='Enter Phone..' id= 'addPhone'></input></td>
-         <td><input type="text" placeholder='Enter Website..' id= 'addWebsite' ></input></td>
+         <td><input type="text" placeholder='Enter name..' value={setNewName}></input></td>
+         <td><input type="email" placeholder='Enter Email..'  value={setNewEmail} ></input></td>
+         <td><input type="number" placeholder='Enter Phone..'  value={setNewPhone}></input></td>
+         <td><input type="text" placeholder='Enter Website..'  value={setNewWebsite}></input></td>
          <td><Button className='bg-success' onClick={addUser}>Add</Button></td>
         </tr>
       </tfoot>
