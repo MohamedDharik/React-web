@@ -67,8 +67,8 @@ function App() {
           <td >{users.id}</td>
           <td>{users.name}</td>
           <td>{users.email}</td>
-          <td >{users.phone}</td>
-          <td >{users.website}</td>
+          <td contentEditable = 'true'>{users.phone}</td>
+          <td  contentEditable = 'true'>{users.website}</td>
           <td>
             
             <Button className={'bg-primary text'} >Update</Button>
