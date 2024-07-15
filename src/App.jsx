@@ -23,10 +23,6 @@ function App() {
     const email = newEmail.trim();
     const phone = newPhone.trim();
     const website = newWebsite.trim();
-  
-    
-   
-
     fetch("https://jsonplaceholder.typicode.com/users",
     {
       method: 'POST',
@@ -43,13 +39,15 @@ function App() {
     }
     ).then((response)=> response.json())
     .then((value)=> setUsers([...user, value]))
+    
     setNewName('');
     setNewPhone('');
     setNewEmail('');
     setNewWebsite('');
   }
    
-  return(
+  return(<>
+    <h1>Api Fetched Data</h1>
     <div className='container-fluid' >
     <table>
       <thead>
@@ -59,7 +57,7 @@ function App() {
         <th>Email</th>
         <th>Phone</th>
         <th>Website</th>
-        <th>Action</th>
+        
       </thead>
       <tbody>
         {user.map(users =>
@@ -67,13 +65,9 @@ function App() {
           <td >{users.id}</td>
           <td>{users.name}</td>
           <td>{users.email}</td>
-          <td contentEditable = 'true'>{users.phone}</td>
+          <td contentEditable = 'true'> {users.phone}</td>
           <td  contentEditable = 'true'>{users.website}</td>
-          <td>
-            
-            <Button className={'bg-primary text'} >Update</Button>
-            <Button className='bg-danger' >Delete</Button>
-          </td>
+          
         </tr>
           )
         }
@@ -81,7 +75,7 @@ function App() {
       <tfoot>
         <tr>
           <td></td>
-         <td><input type="text" placeholder='Enter name..' value={newName} onChange={(e) => setNewName(e.target.value)}></input></td>
+         <td><input type="text" placeholder='Enter name..' value={newName} onChange={(e) => setNewName(e.target.value)} autoFocus></input></td>
          <td><input type="email" placeholder='Enter Email..'  value={newEmail} onChange={(e) => setNewEmail(e.target.value)} ></input></td>
          <td><input type="number" placeholder='Enter Phone..'  value={newPhone} onChange={(e) => setNewPhone(e.target.value)}></input></td>
          <td><input type="text" placeholder='Enter Website..'  value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)}></input></td>
@@ -90,6 +84,7 @@ function App() {
       </tfoot>
     </table>
     </div>
+    </>
   );
 }
 
