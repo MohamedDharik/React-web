@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
-import {Button , InputGroup} from 'react-bootstrap'
+import {Button } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
+
+
 
 function App() {
   const[user, setUsers]=useState([])
@@ -17,30 +19,34 @@ function App() {
 },[])
 
   function addUser(){
-    const Name = newName.trim();
-    const Email = newEmail.trim();
-    const Phone = newPhone.trim();
-    const Webpage = newWebsite.trim();
+    const name = newName.trim();
+    const email = newEmail.trim();
+    const phone = newPhone.trim();
+    const website = newWebsite.trim();
   
     
-    console.log(Name, Phone, Webpage, Email);
+   
 
     fetch("https://jsonplaceholder.typicode.com/users",
     {
       method: 'POST',
       body: JSON.stringify({
-        Name,
-        Email,
-        Phone,
-        Webpage,
+        name,
+        email,
+        phone,
+        website,
         
     }),
       headers:{
-        'content-type' : 'Application/json; charset=utf-8',
+        "content-type" : "Application/json; charset=utf-8"
       } 
     }
     ).then((response)=> response.json())
-    .then((addUser)=> setUsers([...user, addUser]))
+    .then((value)=> setUsers([...user, value]))
+    setNewName('');
+    setNewPhone('');
+    setNewEmail('');
+    setNewWebsite('');
   }
    
   return(
@@ -61,8 +67,8 @@ function App() {
           <td >{users.id}</td>
           <td>{users.name}</td>
           <td>{users.email}</td>
-          <td contentEditable='true'>{users.phone}</td>
-          <td contentEditable='true'>{users.website}</td>
+          <td >{users.phone}</td>
+          <td >{users.website}</td>
           <td>
             
             <Button className={'bg-primary text'} >Update</Button>
@@ -75,10 +81,10 @@ function App() {
       <tfoot>
         <tr>
           <td></td>
-         <td><input type="text" placeholder='Enter name..' value={setNewName}></input></td>
-         <td><input type="email" placeholder='Enter Email..'  value={setNewEmail} ></input></td>
-         <td><input type="number" placeholder='Enter Phone..'  value={setNewPhone}></input></td>
-         <td><input type="text" placeholder='Enter Website..'  value={setNewWebsite}></input></td>
+         <td><input type="text" placeholder='Enter name..' value={newName} onChange={(e) => setNewName(e.target.value)}></input></td>
+         <td><input type="email" placeholder='Enter Email..'  value={newEmail} onChange={(e) => setNewEmail(e.target.value)} ></input></td>
+         <td><input type="number" placeholder='Enter Phone..'  value={newPhone} onChange={(e) => setNewPhone(e.target.value)}></input></td>
+         <td><input type="text" placeholder='Enter Website..'  value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)}></input></td>
          <td><Button className='bg-success' onClick={addUser}>Add</Button></td>
         </tr>
       </tfoot>
