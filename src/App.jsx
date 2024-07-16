@@ -49,11 +49,11 @@ function App() {
   return(<>
    <h1 className='h1 text-info text-center'>Api Fetched Data</h1>
    
-    <div className='container-fluid table table-bordered  mt-4'>
-      <div className="row">
-        <div className="col ms-1">
+    <div className='container-fluid table table-bordered small w- mt-4 px-0'>
+      <div className="row px-0 ms-2 me-3">
+        <div className="col  ">
          <th>ID</th></div>
-        <div className="col ms-1">
+        <div className="col  ">
          <th >Name</th>
         </div>
         <div className="col">
@@ -66,15 +66,15 @@ function App() {
           <th>Website</th>
         </div>
       </div>
-      <div className='row '>
+      <div className='row px-0 ms-2 me-3'>
         {user.map(users =>
         <td key={users.id}>
-          <div className="row">
-          <div className="col ms-1 "><td >{users.id}</td></div>
-          <div className="col"><td>{users.name}</td></div>
-          <div className="col"><td>{users.email}</td></div>
-          <div className="col"><td  > {users.phone}</td></div>
-          <div className="col"><td  >{users.website}</td></div>
+          <div className="row px-0 ms-1">
+          <div className="col px-0  "><td >{users.id}</td></div>
+          <div className="col px-0"><td>{users.name}</td></div>
+          <div className="col px-0"><td>{users.email}</td></div>
+          <div className="col px-0"><td>{users.phone}</td></div>
+          <div className="col px-0"><td>{users.website}</td></div>
           </div>
          
         </td>
@@ -82,28 +82,28 @@ function App() {
         }
       </div>
       <p className='h3 mt-3 ms-4'>Add User</p>
-      <tfoot className=' card  w-25 mt-3'>
+      <tfoot className=' card ms-3 w-25 mt-3'>
         <div className="card border-info mx-auto">
  
           <div className="row ">
-          <div className="col-12 ms-5 ">
+          <div className="col-12 ms-5 mt-1 ">
             
           <td><input type="text" placeholder='Enter name..' value={newName} onChange={(e) => setNewName(e.target.value)} autoFocus></input></td>
           </div>
 
-          <div className="col-12 ms-5">
+          <div className="col-12 ms-5 mt-1">
           <td><input type="text" placeholder='Enter email..' value={newEmail} onChange={(e) => setNewEmail(e.target.value)}></input></td>
           </div>
 
-          <div className="col -12 ms-5">
+          <div className="col -12 ms-5 mt-1">
           <td><input type="text" placeholder='Enter phone..' value={newPhone} onChange={(e) => setNewPhone(e.target.value)}></input></td>
           </div>
 
-          <div className="col-12 ms-5">
+          <div className="col-12 ms-5 mt-1">
           <td><input type="text" placeholder='Enter website..' value={newWebsite} onChange={(e) => setNewWebsite(e.target.value)}></input></td>
           </div>
 
-          <div className="col-12 ms-5">
+          <div className="col-12 ms-5 mt-1">
           <td><Button onClick={addUser} variant="outline-success">Add User</Button></td>
           </div>
           </div>
